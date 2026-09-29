@@ -1,0 +1,55 @@
+name: Jira Build and Deployment Test
+ 
+on:
+  push:
+    branches:
+      - 'SCRUM-6-gitkraken-test'
+ 
+  pull_request:
+    branches:
+      - SCRUM-5-jira-integration-test
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+ 
+      - name: Verify test file
+        run: |
+          echo "Checking test file..."
+          test -f index.html
+          echo "index.html exists"
+ 
+      - name: Run build test
+        run: |
+          echo "Running build test..."
+          echo "Build completed successfully"
+ 
+      - name: Display build information
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Build completed successfully"
+ 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+ 
+    environment:
+      name: development
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+ 
+      - name: Deploy test
+        run: |
+          echo "Starting deployment..."
+          echo "Deploying to development environment..."
+          echo "No real application deployment is required."
+          echo "This is a Jira-GitKarken deployment integration test."
+          echo "Deployment completed successfully."
