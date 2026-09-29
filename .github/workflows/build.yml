@@ -7,7 +7,7 @@ on:
 
   pull_request:
     branches:
-      - SCRUM-6-gitkraken-test
+      - SCRUM-5-jira-integration-test
 
 jobs:
   build:
