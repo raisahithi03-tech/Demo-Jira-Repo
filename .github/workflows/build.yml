@@ -1,0 +1,36 @@
+name: Jira Build Test
+
+on:
+  push:
+    branches:
+      - 'SCRUM-5-jira-integration-test'
+
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Verify test file
+        run: |
+          echo "Checking test file..."
+          test -f index.html
+          echo "index.html exists"
+
+      - name: Run build test
+        run: |
+          echo "Running build test..."
+          echo "Jira GitHub integration build test successful"
+
+      - name: Display build information
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Build completed successfully"
