@@ -1,4 +1,4 @@
-name: Jira Build Test
+name: Jira Build and Deployment Test
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
       - name: Run build test
         run: |
           echo "Running build test..."
-          echo "Jira GitHub integration build test successful"
+          echo "Build completed successfully"
 
       - name: Display build information
         run: |
@@ -34,3 +34,22 @@ jobs:
           echo "Branch: ${{ github.ref_name }}"
           echo "Commit: ${{ github.sha }}"
           echo "Build completed successfully"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: development
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Deploy test
+        run: |
+          echo "Starting deployment..."
+          echo "Deploying to development environment..."
+          echo "No real application deployment is required."
+          echo "This is a Jira-GitHub deployment integration test."
+          echo "Deployment completed successfully."
